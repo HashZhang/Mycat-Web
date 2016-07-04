@@ -276,6 +276,7 @@ function queryForm(form_id,extra_call){
 		  if(extra_func)
 			  extra_func(datas);
 	}
+	console.log(datas);
 	if(mmgrid){
 		mmgrid.load(datas);
 	}else{
@@ -327,26 +328,7 @@ function addForm(serviceName,method,_formid,extra_call){
 var zkPath = "";
 var zkId = "";
 function loadContext(url,copy){
-	
-	if(intervalId)
-		clearInterval(intervalId); 
-	if(copy && mmgrid){
-		var rows =  mmgrid.selectedRows();
-		var length = rows.length;
-		if(length > 0){
-			data = rows[0];
-		}else{
-			alert("请选择复制的条目!");
-			return;
-		}
-	}
-
-	zkPath=getParam(url,"zkpath");
-	zkId=getParam(url,"zkid");
-   	$(".content-wrapper").load(url,function(response,status,xhr){
-   		$(".content").resize(function(){});
-   		
-   	});
+	mwtools.loadContext(url,copy)
 }
 
 var mmgrid;
